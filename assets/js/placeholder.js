@@ -125,12 +125,12 @@ function generatePlaceholderSVG(width, height, colors, type) {
     // Text label based on type
     const textLabel = type.charAt(0).toUpperCase() + type.slice(1);
     const textElement = `
-        <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="${Math.min(width, height) / 10}px" 
-              fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold">
+        <text x="50%" y="50%" font-family="Cairo, sans-serif" font-size="${Math.min(width, height) / 10}px" 
+              fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="600">
             ${textLabel}
         </text>
     `;
-    
+
     return `
         <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
             ${backgroundGradient}
@@ -138,4 +138,4 @@ function generatePlaceholderSVG(width, height, colors, type) {
             ${textElement}
         </svg>
     `;
-} 
+}

@@ -7,6 +7,9 @@ Color Palette:
 - #A188A6 (Light Purple)
 */
 
+/* Import Cairo font */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
 /* ===== BASE STYLES ===== */
 :root {
     --color-black: #020202;
@@ -26,7 +29,12 @@ Color Palette:
     --shadow-md: 0 4px 20px rgba(2, 2, 2, 0.08);
     --shadow-lg: 0 8px 30px rgba(2, 2, 2, 0.12);
     
-    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font-family: 'Cairo', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
     
     --radius-xs: 3px;
     --radius-sm: 6px;
@@ -69,7 +77,10 @@ body {
     color: var(--color-dark-gray);
     background-color: var(--color-light-gray);
     overflow-x: hidden;
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
 }
 
 img {
@@ -98,17 +109,19 @@ a:focus-visible {
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--color-dark-blue);
-    font-weight: 700;
+    font-weight: var(--font-weight-medium);
     line-height: 1.3;
     margin-bottom: var(--spacing-sm);
 }
 
 h1 {
     font-size: 3.5rem;
+    font-weight: var(--font-weight-bold);
 }
 
 h2 {
     font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
 }
 
 h3 {
@@ -132,7 +145,7 @@ button, .btn-primary, .btn-secondary {
     cursor: pointer;
     border: none;
     border-radius: var(--radius-md);
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     text-align: center;
     transition: all var(--transition-fast);
     padding: 0.75rem 1.75rem;
@@ -161,7 +174,7 @@ section {
 
 .section-header h2 {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 1.5rem;
     color: var(--color-dark-blue);
     position: relative;
@@ -187,7 +200,7 @@ section {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     line-height: 1.6;
     opacity: 1 !important;
 }
@@ -296,7 +309,7 @@ section {
 .btn-primary {
     background: var(--gradient-primary);
     color: var(--color-white) !important;
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-fast);
     position: relative;
@@ -329,7 +342,7 @@ section {
 .btn-secondary {
     background-color: transparent;
     color: var(--color-dark-blue) !important;
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     border: 2px solid var(--color-dark-blue);
     position: relative;
     overflow: hidden;
@@ -363,7 +376,7 @@ section {
     display: inline-flex;
     align-items: center;
     color: var(--color-purple);
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     text-decoration: none;
     transition: all var(--transition-fast);
     margin-top: auto;
@@ -403,6 +416,7 @@ section {
 .btn-large {
     padding: 1rem 2.5rem;
     font-size: 1.125rem;
+    font-weight: var(--font-weight-medium);
 }
 
 .btn-full {
@@ -432,7 +446,7 @@ section {
 
 .logo a {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-semibold);
     color: var(--color-dark-blue);
     display: flex;
     align-items: center;
@@ -453,7 +467,7 @@ section {
 }
 
 .nav-menu a {
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     position: relative;
     padding: 0.5rem 0;
 }
@@ -535,7 +549,7 @@ section {
 .hero-content h1 {
     font-size: 4rem;
     line-height: 1.23;
-    font-weight: 800;
+    font-weight: var(--font-weight-extrabold);
     margin-bottom: 1.75rem;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -689,7 +703,7 @@ section {
 
 .feature-card h3 {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 1rem;
     color: var(--color-dark-blue);
 }
@@ -767,7 +781,7 @@ section {
 
 .service-content h3 {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 1rem;
     color: var(--color-dark-blue);
 }
@@ -807,7 +821,7 @@ section {
     display: inline-flex;
     align-items: center;
     color: var(--color-purple);
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     text-decoration: none;
     transition: all var(--transition-fast);
     margin-top: auto;
@@ -852,6 +866,7 @@ section {
 .btn-large {
     padding: 1rem 2.5rem;
     font-size: 1.125rem;
+    font-weight: var(--font-weight-medium);
 }
 
 .btn-full {
@@ -877,7 +892,7 @@ section {
     color: var(--color-dark-gray);
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius-lg);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     transition: all var(--transition-fast);
     border: 2px solid transparent;
 }
@@ -890,7 +905,7 @@ section {
     background-color: transparent;
     color: var(--color-dark-blue);
     border-color: var(--color-purple);
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
 }
 
 .portfolio-grid {
@@ -963,7 +978,7 @@ section {
 
 .portfolio-content h3 {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 0.5rem;
     color: var(--color-white);
 }
@@ -1086,7 +1101,7 @@ section {
 .stat-number {
     font-size: 3rem;
     background: var(--gradient-primary);
-    font-weight: 800;
+    font-weight: var(--font-weight-extrabold);
     -webkit-background-clip: text;
     background-clip: text;
     margin-bottom: 0.5rem;
@@ -1098,7 +1113,7 @@ section {
     font-size: 0.95rem;
     color: var(--color-dark-gray);
     text-align: center;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .about-image {
@@ -1217,7 +1232,7 @@ section {
 
 .author-info h4 {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 0.25rem;
     color: var(--color-dark-blue);
 }
@@ -1226,6 +1241,7 @@ section {
     font-size: 0.85rem;
     color: var(--color-dark-gray);
     margin-bottom: 0;
+    font-weight: var(--font-weight-regular);
 }
 
 .portfolio-more {
@@ -1323,7 +1339,7 @@ section {
 .cta-content h2 {
     color: var(--color-white);
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 1.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -1343,7 +1359,7 @@ section {
 
 .cta-subtitle {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-medium);
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 1rem;
     position: relative;
@@ -1359,7 +1375,7 @@ section {
     padding: 1.25rem 3rem;
     font-size: 1.125rem;
     border-radius: var(--radius-lg);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     box-shadow: var(--shadow-lg);
 }
 
@@ -1428,14 +1444,14 @@ section {
 
 .info-item h3 {
     font-size: 1.35rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     color: var(--color-dark-blue);
 }
 
 .info-item a {
     color: var(--color-dark-gray);
     transition: all var(--transition-fast);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .info-item a:hover, .info-item a:focus {
@@ -1455,7 +1471,7 @@ section {
 
     color: var(--color-dark-blue);
     border-radius: 50%;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     font-size: 0.95rem;
 
     transition: all var(--transition-fast);
@@ -1494,7 +1510,7 @@ section {
 label {
     display: block;
     margin-bottom: 0.75rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     color: var(--color-dark-blue);
     font-size: 0.95rem;
 }
@@ -1523,7 +1539,7 @@ textarea {
 
 .contact-form .btn-primary {
     padding: 1rem 1.5rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
     margin-top: 1rem;
 }
 
@@ -1561,7 +1577,7 @@ footer::before {
 
 .footer-logo a {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-semibold);
     color: var(--color-white);
     margin-bottom: 1.5rem;
     display: inline-block;
@@ -1576,6 +1592,7 @@ footer::before {
     margin-top: 0.75rem;
     max-width: 350px;
     line-height: 1.7;
+    font-weight: var(--font-weight-regular);
 }
 
 .footer-links {
@@ -1586,7 +1603,7 @@ footer::before {
 
 .footer-column h4 {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 1.5rem;
     color: var(--color-light-purple);
     position: relative;
@@ -1652,7 +1669,7 @@ footer::before {
     padding: 1rem 1.5rem;
     margin-bottom: 1.5rem;
     border-radius: var(--radius-md);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     text-align: center;
     animation: fadeIn var(--transition-medium);
 }
@@ -1912,7 +1929,7 @@ footer::before {
 /* Section subtitles */
 .section-subtitle {
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-medium);
     color: var(--color-purple);
     margin-bottom: 1rem;
     text-transform: uppercase;
@@ -1932,7 +1949,7 @@ footer::before {
 .tag-line {
     display: inline-block;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     color: var(--color-purple);
     margin-bottom: 1rem;
     position: relative;
@@ -1962,7 +1979,7 @@ footer::before {
 
 .stat-highlight {
     font-size: 2.5rem;
-    font-weight: 800;
+    font-weight: var(--font-weight-extrabold);
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
@@ -1974,7 +1991,7 @@ footer::before {
 .stat-text {
     font-size: 0.95rem;
     color: var(--color-dark-gray);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 /* Floating elements */
@@ -2027,7 +2044,7 @@ footer::before {
     align-items: center;
     color: var(--color-dark-gray);
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     transition: all var(--transition-fast);
 }
 
@@ -2089,7 +2106,7 @@ footer::before {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
     box-shadow: var(--shadow-sm);
 }
 
@@ -2126,7 +2143,7 @@ footer::before {
 
 .cta-subtitle {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 1rem;
     position: relative;
@@ -2157,7 +2174,7 @@ footer::before {
 
 .vision-item h4 {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 0.5rem;
     color: var(--color-dark-blue);
 }
@@ -2188,14 +2205,14 @@ footer::before {
 
 .exp-number {
     font-size: 2rem;
-    font-weight: 800;
+    font-weight: var(--font-weight-extrabold);
     line-height: 1;
     margin-bottom: 0.25rem;
 }
 
 .exp-text {
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 /* Testimonial rating */
@@ -2210,7 +2227,7 @@ footer::before {
 /* Portfolio category */
 .portfolio-category {
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
     color: var(--color-light-purple);
     margin-bottom: 0.5rem;
     display: block;
@@ -2229,7 +2246,7 @@ footer::before {
 .services-cta p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 /* Form row */
@@ -2289,6 +2306,7 @@ footer::before {
 .footer-bottom-links a {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.85rem;
+    font-weight: var(--font-weight-regular);
 }
 
 .footer-bottom-links a:hover {
@@ -2444,7 +2462,7 @@ footer::before {
 
 .author-info h4 {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-bottom: 0.25rem;
     color: var(--color-dark-blue);
 }
@@ -2453,6 +2471,7 @@ footer::before {
     font-size: 0.85rem;
     color: var(--color-dark-gray);
     margin-bottom: 0;
+    font-weight: var(--font-weight-regular);
 }
 
 /* Make sure testimonial animations work properly */
@@ -2508,5 +2527,70 @@ footer::before {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+}
+
+/* ===== SCROLL ANIMATION STYLES ===== */
+/* Fade in up animation for sections */
+.fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animation for children */
+.fade-in-up:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.fade-in-up:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.fade-in-up:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Animation settings for different sections */
+section {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Ensure section headers fade in beautifully */
+.section-header {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-header h2, 
+.section-header p, 
+.section-subtitle {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Prevent animations on smaller screens or reduced motion preference */
+@media (max-width: 576px), (prefers-reduced-motion: reduce) {
+    .fade-in-up {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    section,
+    .section-header,
+    .section-header h2,
+    .section-header p,
+    .section-subtitle {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 } 

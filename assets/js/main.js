@@ -136,7 +136,7 @@ function initTestimonialSlider() {
         testimonial.style.visibility = 'visible';
     });
     
-    // In case we want to clone items for seamless looping (optional enhancement)
+    // In case we want to clone items for seamless looping (optionalx` enhancement)
     const track = document.querySelector('.testimonial-track');
     if (track) {
         // Get all original items
@@ -146,7 +146,7 @@ function initTestimonialSlider() {
         // This helps with the continuous effect
         if (items.length > 2) {
             // Clone the first two items and append to the end
-            const firstItemClone = items[0].cloneNode(true);
+            const firstItemClone = items[0].cloneNode(true)
             const secondItemClone = items[1].cloneNode(true);
             
             // Add a class to identify clones (for debugging)
@@ -269,7 +269,7 @@ function initContactForm() {
 }
 
 /**
- * Scroll effects
+ * Scroll effects including smooth scrolling and reveal animations
  */
 function initScrollEffects() {
     // Smooth scroll for anchor links
@@ -295,17 +295,74 @@ function initScrollEffects() {
         });
     });
     
-    // Make all reveal elements visible by default to fix the issue
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => {
-        el.classList.add('revealed');
+    // Fade up animation for sections using Intersection Observer
+    const sections = document.querySelectorAll('section');
+    
+    // Observer options
+    const observerOptions = {
+        root: null, // viewport is used as the root
+        rootMargin: '0px',
+        threshold: 0.15 // 15% of the element must be visible
+    };
+    
+    // Define the observer
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add fade-in-up animation to the section
+                entry.target.classList.add('fade-in-up');
+                entry.target.style.opacity = '1';
+                
+                // Also reveal all animations within this section
+                const animatedElements = entry.target.querySelectorAll('.feature-card, .service-card, .portfolio-item, .testimonial-item, .about-content > div');
+                animatedElements.forEach(el => {
+                    el.classList.add('revealed');
+                    
+                    // Add a staggered delay for child elements
+                    const children = Array.from(animatedElements);
+                    children.forEach((child, index) => {
+                        child.style.transitionDelay = `${index * 0.1}s`;
+                    });
+                });
+                
+                // Make section header content visible
+                const sectionHeader = entry.target.querySelector('.section-header');
+                if (sectionHeader) {
+                    sectionHeader.classList.add('fade-in-up');
+                    sectionHeader.style.opacity = '1';
+                    
+                    const headerElements = sectionHeader.querySelectorAll('h2, p, .section-subtitle');
+                    headerElements.forEach((el, index) => {
+                        el.style.transitionDelay = `${index * 0.1}s`;
+                        el.classList.add('fade-in-up');
+                        el.style.opacity = '1';
+                        el.style.visibility = 'visible';
+                    });
+                }
+                
+                // Unobserve the section after animation
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Start observing each section
+    sections.forEach(section => {
+        // Set initial state (hidden)
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        // Observe the section
+        sectionObserver.observe(section);
     });
     
-    // Make all section content visible
-    document.querySelectorAll('.section-header p').forEach(el => {
-        el.style.opacity = '1';
-        el.style.visibility = 'visible';
-    });
+    // Make the hero section immediately visible (no animation for first section)
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.style.opacity = '1';
+        heroSection.style.transform = 'translateY(0)';
+    }
 }
 
 /**
