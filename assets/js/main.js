@@ -20,6 +20,8 @@ function initNavbar() {
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.querySelector('.nav-menu');
     const body = document.body;
+    const navbar = document.querySelector('.navbar');
+    const heroSection = document.querySelector('.hero');
     
     // Create overlay element
     const overlay = document.createElement('div');
@@ -53,12 +55,41 @@ function initNavbar() {
         });
     }
     
-    // Active menu based on scroll position
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    
+    // Handle scroll events for navbar
     window.addEventListener('scroll', function() {
+        // Get hero section height to know when to transform navbar
+        const heroHeight = heroSection ? heroSection.offsetHeight / 2 : 300;
+        
+        if (window.scrollY > heroHeight) {
+            navbar.classList.add('scrolled');
+            // Ensure proper focus/tab navigation when scrolled
+            const logoImageLink = document.querySelector('.logo-image-link');
+            if (logoImageLink) {
+                logoImageLink.setAttribute('tabindex', '0');
+            }
+            
+            const logoTextLink = document.querySelector('.logo-text a');
+            if (logoTextLink) {
+                logoTextLink.setAttribute('tabindex', '-1');
+            }
+        } else {
+            navbar.classList.remove('scrolled');
+            // Reset tabindex for accessibility
+            const logoImageLink = document.querySelector('.logo-image-link');
+            if (logoImageLink) {
+                logoImageLink.setAttribute('tabindex', '-1');
+            }
+            
+            const logoTextLink = document.querySelector('.logo-text a');
+            if (logoTextLink) {
+                logoTextLink.setAttribute('tabindex', '0');
+            }
+        }
+        
+        // Active menu based on scroll position (existing code)
         let current = '';
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-menu a');
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -274,25 +305,26 @@ function initContactForm() {
 function initScrollEffects() {
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            if (this.getAttribute('href') !== '#') {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const headerOffset = 80; // Adjust based on your fixed header height
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             }
         });
+    });
+
+    // Add shadow to navbar on scroll
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
     });
     
     // Fade up animation for sections using Intersection Observer

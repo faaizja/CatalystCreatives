@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="assets/images/cc-logo.png">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
                 <div class="logo">
-                    <a href="#"><span>Catalyst</span> Creatives</a>
+                    <div class="logo-text">
+                        <a href="#"><span>Catalyst</span>Creatives</a>
+                    </div>
+                    <a href="#" class="logo-image-link">
+                        <img src="assets/images/cc-logo.png" alt="Catalyst Creatives Logo" class="logo-image">
+                    </a>
                 </div>
                 <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                     <span></span>
@@ -57,7 +61,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="assets/images/hero-placeholder.jpg" alt="Modern digital solutions concept" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Close-up of hands working on digital devices" loading="lazy">
                 </div>
             </div>
             <div class="scroll-down">
@@ -78,21 +82,39 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <img src="assets/images/icon-placeholder-1.jpg" alt="Innovation icon" loading="lazy">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#6E41C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 19V5"></path>
+                                <path d="M5 12l7-7 7 7"></path>
+                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7"></path>
+                                <circle cx="12" cy="11" r="2"></circle>
+                                <path d="M17 7l-5-2-5 2"></path>
+                            </svg>
                         </div>
                         <h3>Innovative Solutions</h3>
                         <p>Cutting-edge technology tailored for your unique business challenges to stay ahead of the competition.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <img src="assets/images/icon-placeholder-2.jpg" alt="Strategy icon" loading="lazy">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#6E41C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+                                <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                                <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                                <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
                         </div>
                         <h3>Strategic Approach</h3>
                         <p>Data-driven decisions to maximize your ROI and business growth with measurable outcomes.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <img src="assets/images/icon-placeholder-3.jpg" alt="Support icon" loading="lazy">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#6E41C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
                         </div>
                         <h3>Dedicated Support</h3>
                         <p>Our team is committed to your success with responsive and personalized ongoing support.</p>
@@ -524,11 +546,6 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2023 Catalyst Creatives. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Sitemap</a>
-                </div>
             </div>
         </div>
         <div class="footer-shape"></div>

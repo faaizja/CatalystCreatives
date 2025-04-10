@@ -13,10 +13,10 @@ function replacePlaceholderImages() {
     
     // Color palettes for different image types
     const colorPalettes = {
-        hero: ['#0D324D', '#1F5D8C', '#4297C3', '#96CAE9'],
-        service: ['#7F5A83', '#A188AA', '#C4B1D0', '#E5D7ED'],
-        portfolio: ['#2E3A5C', '#4E6096', '#7D91D2', '#C6CCE9'],
-        about: ['#276556', '#3D8F7A', '#65C2A7', '#A5E4D1'],
+        hero: ['#6E41C0', '#8550C5', '#A25CCE', '#B575D7'],
+        service: ['#A25CCE', '#B575D7', '#C998E1', '#DFC8EE'],
+        portfolio: ['#6E41C0', '#7E4CC2', '#8E56C4', '#9450C4'],
+        about: ['#9450C4', '#A865CA', '#BC7AD1', '#CFB5DE'],
         testimonial: ['#8C6D46', '#B39268', '#D4BB95', '#E9DCCB'],
         icon: ['#4F4A4A', '#6C6666', '#908C8C', '#C1BEBE'],
         default: ['#565656', '#777777', '#999999', '#BBBBBB']
