@@ -300,19 +300,47 @@ function initContactForm() {
 }
 
 /**
+ * Helper function for smooth scrolling
+ * @param {number} targetPosition - Target scroll position
+ * @param {number} duration - Animation duration in milliseconds
+ */
+function smoothScrollTo(targetPosition, duration = 100) {
+    // Get current scroll position
+    const startPosition = window.pageYOffset;
+    // Calculate distance
+    const distance = targetPosition - startPosition;
+    // Start time
+    const start = performance.now();
+    
+    function animateScroll(currentTime) {
+        const elapsed = currentTime - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const easing = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        
+        window.scrollTo(0, startPosition + distance * easing);
+        
+        if (elapsed < duration) {
+            requestAnimationFrame(animateScroll);
+        }
+    }
+    
+    requestAnimationFrame(animateScroll);
+}
+
+/**
  * Scroll effects including smooth scrolling and reveal animations
  */
 function initScrollEffects() {
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchor links with slower speed
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                // Calculate target position with offset for navbar
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                // Use the helper function
+                smoothScrollTo(targetPosition);
             }
         });
     });
@@ -458,10 +486,8 @@ function initBackToTop() {
         });
         
         backToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            // Use the helper function to scroll to top
+            smoothScrollTo(0);
         });
     }
 } 
