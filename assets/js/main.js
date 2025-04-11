@@ -362,43 +362,44 @@ function initScrollEffects() {
     const observerOptions = {
         root: null, // viewport is used as the root
         rootMargin: '0px',
-        threshold: 0.15 // 15% of the element must be visible
+        threshold: 0.10 // Reduced threshold for earlier triggering
     };
     
     // Define the observer
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add fade-in-up animation to the section
-                entry.target.classList.add('fade-in-up');
-                entry.target.style.opacity = '1';
+                // Add fade-in-up animation to the section with RAF for smoother animation
+                requestAnimationFrame(() => {
+                    entry.target.classList.add('fade-in-up');
+                    entry.target.style.opacity = '1';
                 
-                // Also reveal all animations within this section
-                const animatedElements = entry.target.querySelectorAll('.feature-card, .service-card, .portfolio-item, .testimonial-item, .about-content > div');
-                animatedElements.forEach(el => {
-                    el.classList.add('revealed');
-                    
-                    // Add a staggered delay for child elements
-                    const children = Array.from(animatedElements);
-                    children.forEach((child, index) => {
-                        child.style.transitionDelay = `${index * 0.1}s`;
+                    // Also reveal all animations within this section
+                    const animatedElements = entry.target.querySelectorAll('.feature-card, .service-card, .portfolio-item, .testimonial-item, .about-content > div');
+                    animatedElements.forEach((el, index) => {
+                        // Reduced staggering delay to minimize jitter
+                        setTimeout(() => {
+                            el.classList.add('revealed');
+                        }, index * 50); // Reduced delay between items
                     });
+                
+                    // Make section header content visible
+                    const sectionHeader = entry.target.querySelector('.section-header');
+                    if (sectionHeader) {
+                        sectionHeader.classList.add('fade-in-up');
+                        sectionHeader.style.opacity = '1';
+                    
+                        const headerElements = sectionHeader.querySelectorAll('h2, p, .section-subtitle');
+                        headerElements.forEach((el, index) => {
+                            // Use setTimeout instead of transitionDelay for more control
+                            setTimeout(() => {
+                                el.classList.add('fade-in-up');
+                                el.style.opacity = '1';
+                                el.style.visibility = 'visible';
+                            }, index * 50); // Reduced delay 
+                        });
+                    }
                 });
-                
-                // Make section header content visible
-                const sectionHeader = entry.target.querySelector('.section-header');
-                if (sectionHeader) {
-                    sectionHeader.classList.add('fade-in-up');
-                    sectionHeader.style.opacity = '1';
-                    
-                    const headerElements = sectionHeader.querySelectorAll('h2, p, .section-subtitle');
-                    headerElements.forEach((el, index) => {
-                        el.style.transitionDelay = `${index * 0.1}s`;
-                        el.classList.add('fade-in-up');
-                        el.style.opacity = '1';
-                        el.style.visibility = 'visible';
-                    });
-                }
                 
                 // Unobserve the section after animation
                 observer.unobserve(entry.target);
@@ -408,10 +409,11 @@ function initScrollEffects() {
     
     // Start observing each section
     sections.forEach(section => {
-        // Set initial state (hidden)
+        // Set initial state (hidden) using transform3d for hardware acceleration
         section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        section.style.transform = 'translateY(30px) translateZ(0)';
+        section.style.transition = 'opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1)';
+        section.style.willChange = 'opacity, transform';
         
         // Observe the section
         sectionObserver.observe(section);
@@ -421,7 +423,7 @@ function initScrollEffects() {
     const heroSection = document.querySelector('.hero');
     if (heroSection) {
         heroSection.style.opacity = '1';
-        heroSection.style.transform = 'translateY(0)';
+        heroSection.style.transform = 'translateY(0) translateZ(0)';
     }
 }
 
