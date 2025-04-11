@@ -362,7 +362,7 @@ function initScrollEffects() {
     const observerOptions = {
         root: null, // viewport is used as the root
         rootMargin: '0px',
-        threshold: 0.10 // Reduced threshold for earlier triggering
+        threshold: 0.2 // Increased threshold for more stable triggering
     };
     
     // Define the observer
@@ -431,26 +431,22 @@ function initScrollEffects() {
     const portfolioItems = portfolioSection?.querySelectorAll('.portfolio-item');
     
     if (portfolioSection && portfolioItems.length) {
-        // Pre-render the portfolio items to prevent flickering
         portfolioItems.forEach(item => {
             item.style.opacity = '1';
-            item.style.transform = 'translateY(0) translateZ(0)';
-            item.style.willChange = 'transform';
+            item.style.transform = 'none'; // Removed translateY to prevent flickering
+            item.style.willChange = 'opacity';
             item.style.visibility = 'visible';
         });
-        
-        // Create a separate observer just for the portfolio section
+
         const portfolioObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Apply a more stable animation to the portfolio grid
                     requestAnimationFrame(() => {
                         const grid = entry.target.querySelector('.portfolio-grid');
                         if (grid) {
                             grid.style.opacity = '1';
                         }
-                        
-                        // Gently fade in the portfolio items without transform
+
                         portfolioItems.forEach((item, index) => {
                             item.style.transitionDelay = `${index * 0.05}s`;
                             item.style.transitionProperty = 'opacity';
@@ -458,16 +454,12 @@ function initScrollEffects() {
                             item.style.transitionTimingFunction = 'cubic-bezier(0.215, 0.61, 0.355, 1)';
                         });
                     });
-                    
-                    // Unobserve after animation is applied
+
                     portfolioObserver.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px'
-        });
-        
+        }, observerOptions);
+
         portfolioObserver.observe(portfolioSection);
     }
 }
