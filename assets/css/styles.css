@@ -337,6 +337,7 @@ section {
     background: var(--gradient-secondary); /* Keep gradient for primary buttons */
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
+    transition-duration: 0.3s;
 }
 
 .btn-primary:hover::before, .btn-primary:focus::before {
@@ -369,6 +370,7 @@ section {
 
 .btn-secondary:hover, .btn-secondary:focus {
     color: var(--color-white) !important;
+    transition-duration: 0.5s;
 }
 
 .btn-secondary:hover::before, .btn-secondary:focus::before {
