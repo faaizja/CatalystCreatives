@@ -988,6 +988,9 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 2.5rem;
+    transform: translateZ(0);
+    will-change: opacity;
+    backface-visibility: hidden;
 }
 
 .portfolio-item {
@@ -1001,10 +1004,12 @@ section {
     transform: none !important;
     opacity: 1 !important;
     visibility: visible !important;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .portfolio-item:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) !important;
     box-shadow: var(--shadow-lg);
 }
 
@@ -1012,6 +1017,8 @@ section {
     position: relative;
     overflow: hidden;
     aspect-ratio: 4/3;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .portfolio-image img {
@@ -1019,6 +1026,8 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-medium);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .portfolio-overlay {
@@ -1034,6 +1043,8 @@ section {
     opacity: 0.9 !important;
     visibility: visible !important;
     transition: opacity var(--transition-medium);
+    transform: translateZ(0);
+    will-change: opacity;
 }
 
 .portfolio-item:hover .portfolio-image img {
