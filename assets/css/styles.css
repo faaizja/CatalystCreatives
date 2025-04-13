@@ -1277,6 +1277,7 @@ section {
     visibility: visible !important;
     max-width: 98%; /* Increased from 90% to 98% to reduce the gap */
     margin: 0 auto; /* Center the content */
+    border: 1px solid transparent; /* Added transparent border for smooth transition */
 }
 
 .testimonial-content p {
@@ -2642,7 +2643,9 @@ footer::before {
 /* Smooth shadow effect when hovering over testimonials */
 .testimonial-content:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: none; /* Remove the shadow */
+    border-color: var(--color-purple); /* Add border color */
+    box-shadow: 0 0 15px rgba(162, 92, 206, 0.3); /* Add subtle glow effect using Amethyst color with transparency */
 }
 
 /* Ensure consistent testimonial card heights */
