@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initNavbar();
+    initLogoNavigation();
     initPortfolioFilter();
     initTestimonialSlider();
     initContactForm();
@@ -107,6 +108,20 @@ function initNavbar() {
             }
         });
     });
+}
+
+/**
+ * Logo navigation to top of page
+ */
+function initLogoNavigation() {
+    const logoImage = document.querySelector('.logo-image-link');
+    
+    if (logoImage) {
+        logoImage.addEventListener('click', function(e) {
+            e.preventDefault();
+            smoothScrollTo(0);
+        });
+    }
 }
 
 /**
