@@ -149,9 +149,17 @@ function initNavbar() {
  */
 function initLogoNavigation() {
     const logoImage = document.querySelector('.logo-image-link');
+    const footerLogo = document.querySelector('.footer-logo a');
     
     if (logoImage) {
         logoImage.addEventListener('click', function(e) {
+            e.preventDefault();
+            smoothScrollTo(0);
+        });
+    }
+    
+    if (footerLogo) {
+        footerLogo.addEventListener('click', function(e) {
             e.preventDefault();
             smoothScrollTo(0);
         });
