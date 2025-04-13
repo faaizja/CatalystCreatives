@@ -1239,7 +1239,7 @@ section {
 .testimonial-track {
     display: flex;
     width: 500%; /* 5 testimonials × 100% */
-    animation: testimonial-scroll 45s linear infinite;
+    animation: testimonial-scroll 35s linear infinite; /* Reduced from 45s to 35s to speed up */
 }
 
 .testimonial-track:hover {
@@ -1251,13 +1251,13 @@ section {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-80%); /* Move 4 items (4/5 = 80%) */
+        transform: translateX(-84%); /* Adjusted from -80% to match the new item width of 16% (5 items × 16.8% = 84%) */
     }
 }
 
 .testimonial-item {
-    flex: 0 0 20%; /* Each item takes up 1/5 of the container */
-    padding: 0 1rem;
+    flex: 0 0 16%; /* Reduced from 20% to 16% to make narrower */
+    padding: 0 0.5rem; /* Reduced from 1.5rem to 0.5rem to bring cards closer together */
     box-sizing: border-box;
     opacity: 1 !important;
     visibility: visible !important;
@@ -1275,6 +1275,8 @@ section {
     position: relative;
     opacity: 1 !important;
     visibility: visible !important;
+    max-width: 98%; /* Increased from 90% to 98% to reduce the gap */
+    margin: 0 auto; /* Center the content */
 }
 
 .testimonial-content p {
@@ -2646,7 +2648,7 @@ footer::before {
 /* Ensure consistent testimonial card heights */
 @media (min-width: 768px) {
     .testimonial-content {
-        min-height: 300px;
+        min-height: 280px; /* Reduced from 300px */
     }
 }
 
