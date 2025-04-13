@@ -87,24 +87,58 @@ function initNavbar() {
             }
         }
         
-        // Active menu based on scroll position (existing code)
+        // Active menu based on scroll position
+        updateActiveNavLink();
+    });
+    
+    // Function to update active nav link based on scroll position
+    function updateActiveNavLink() {
         let current = '';
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-menu a');
+        const scrollPosition = window.scrollY + 150; // Add offset for better accuracy
         
+        // Find which section is currently in view
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             
-            if (window.scrollY >= (sectionTop - 100)) {
+            if (scrollPosition >= sectionTop && scrollPosition < (sectionTop + sectionHeight)) {
                 current = section.getAttribute('id');
             }
         });
         
+        // Update active class on nav links
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${current}`) {
                 link.classList.add('active');
+            }
+        });
+    }
+    
+    // Update active link on initial load
+    updateActiveNavLink();
+    
+    // Also update when clicking on navbar links
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Close mobile menu
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            body.classList.remove('no-scroll');
+            
+            // Scroll to the section
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                smoothScrollTo(targetPosition);
+                
+                // Update active link after scrolling
+                setTimeout(updateActiveNavLink, 100);
             }
         });
     });
