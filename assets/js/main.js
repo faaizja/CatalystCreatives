@@ -328,8 +328,7 @@ function initContactForm() {
             }
             
             if (isValid) {
-                // Submit form - this is where you would send the data to your server
-                // For this example, we'll just simulate a successful submission
+                // Submit form using EmailJS
                 
                 // Show loading state
                 const submitBtn = form.querySelector('button[type="submit"]');
@@ -337,20 +336,53 @@ function initContactForm() {
                 submitBtn.innerHTML = '<span class="loading-spinner"></span>Sending...';
                 submitBtn.disabled = true;
                 
-                // Simulate server request
-                setTimeout(() => {
-                    // Hide form and show success message
-                    form.innerHTML = `
-                        <div class="form-success">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                            <h3>Thank You!</h3>
-                            <p>Your message has been sent successfully. We'll get back to you shortly.</p>
-                        </div>
-                    `;
-                }, 2000);
+                // Get form data
+                const name = form.querySelector('#name').value;
+                const email = form.querySelector('#email').value;
+                const phone = form.querySelector('#phone').value;
+                const service = form.querySelector('#service').value;
+                const message = form.querySelector('#message').value;
+                
+                // Prepare template parameters
+                const templateParams = {
+                    from_name: name,
+                    from_email: email,
+                    phone_number: phone,
+                    service_interest: service,
+                    message: message
+                };
+                
+                // Send email using EmailJS
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        
+                        // Hide form and show success message
+                        form.innerHTML = `
+                            <div class="form-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <h3>Thank You!</h3>
+                                <p>Your message has been sent successfully. We'll get back to you shortly.</p>
+                            </div>
+                        `;
+                    })
+                    .catch(function(error) {
+                        console.log('FAILED...', error);
+                        
+                        // Show error message
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                        
+                        const errorMsg = document.createElement('div');
+                        errorMsg.classList.add('form-message', 'error');
+                        errorMsg.innerHTML = `
+                            <p>Sorry, there was an error sending your message. Please try again later or contact us directly at info@catalystcreatives.com.</p>
+                        `;
+                        form.prepend(errorMsg);
+                    });
             }
         });
     }
