@@ -353,7 +353,7 @@ function initContactForm() {
                 };
                 
                 // Send email using EmailJS
-                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                emailjs.send('service_i2hpgam', 'template_qhhzj7e', templateParams)
                     .then(function(response) {
                         console.log('SUCCESS!', response.status, response.text);
                         
