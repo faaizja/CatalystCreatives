@@ -1482,7 +1482,9 @@ section {
 
 @media (min-width: 992px) {
     .contact-content {
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr;
+        max-width: 800px;
+        margin: 0 auto;
     }
 }
 
@@ -1585,6 +1587,9 @@ section {
     padding: 3.5rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .form-group {
@@ -1704,6 +1709,45 @@ footer::before {
     max-width: 350px;
     line-height: 1.7;
     font-weight: var(--font-weight-regular);
+}
+
+.footer-contact {
+    margin-top: 1rem;
+}
+
+.footer-contact h3 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.95);
+    position: relative;
+    display: inline-block;
+}
+
+.footer-contact h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
+}
+
+.footer-contact p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: all var(--transition-fast);
+    display: inline-block;
+}
+
+.footer-contact a:hover, .footer-contact a:focus {
+    color: var(--color-white);
+    transform: translateX(5px);
 }
 
 .footer-column h4 {

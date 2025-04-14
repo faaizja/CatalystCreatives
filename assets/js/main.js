@@ -379,7 +379,7 @@ function initContactForm() {
                         const errorMsg = document.createElement('div');
                         errorMsg.classList.add('form-message', 'error');
                         errorMsg.innerHTML = `
-                            <p>Sorry, there was an error sending your message. Please try again later or contact us directly at info@catalystcreatives.com.</p>
+                            <p>Sorry, there was an error sending your message. Please try again later.</p>
                         `;
                         form.prepend(errorMsg);
                     });
