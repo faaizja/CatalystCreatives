@@ -1187,10 +1187,6 @@ section {
     padding: 1rem;
 }
 
-.stat-item:hover {
-    transform: translateY(-3px);
-}
-
 .stat-number {
     font-size: 3rem;
     color: var(--color-dark-blue); /* Solid color instead of gradient text */
