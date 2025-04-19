@@ -336,6 +336,9 @@ function initContactForm() {
                 submitBtn.innerHTML = '<span class="loading-spinner"></span>Sending...';
                 submitBtn.disabled = true;
                 
+                // Add submitting class for subtle animation
+                form.classList.add('submitting');
+                
                 // Get form data
                 const name = form.querySelector('#name').value;
                 const email = form.querySelector('#email').value;
@@ -360,14 +363,26 @@ function initContactForm() {
                         // Hide form and show success message
                         form.innerHTML = `
                             <div class="form-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="checkmark">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12l2 2 6-6"></path>
                                 </svg>
                                 <h3>Thank You!</h3>
-                                <p>Your message has been sent successfully. We'll get back to you shortly.</p>
+                                <p>Your message has been sent successfully. We'll get back to you shortly at the email address you provided.</p>
+                                <div class="success-particles"></div>
                             </div>
                         `;
+                        
+                        // Add particle animations
+                        setTimeout(() => {
+                            const particlesContainer = document.querySelector('.success-particles');
+                            if (particlesContainer) {
+                                // Create particles
+                                for (let i = 0; i < 20; i++) {
+                                    createParticle(particlesContainer);
+                                }
+                            }
+                        }, 300);
                     })
                     .catch(function(error) {
                         console.log('FAILED...', error);
@@ -618,4 +633,54 @@ function initBackToTop() {
             smoothScrollTo(0);
         });
     }
+}
+
+/**
+ * Creates a decorative particle for the success animation
+ * @param {HTMLElement} container - The container to add the particle to
+ */
+function createParticle(container) {
+    const particle = document.createElement('span');
+    particle.classList.add('particle');
+    
+    const size = Math.random() * 8 + 4;
+    const duration = Math.random() * 2 + 1;
+    const delay = Math.random() * 0.5;
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    const rotation = Math.random() * 360;
+    
+    // Randomly choose between circle and square
+    const shapes = ['circle', 'square'];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    particle.classList.add(shape);
+    
+    // Colors matching the theme
+    const colors = ['#6E41C0', '#7E57C2', '#9575CD', '#B39DDB'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Generate random movement values
+    const randomX = (Math.random() - 0.5) * 200;
+    const randomY = (Math.random() - 0.5) * 200;
+    const randomRotate = Math.random() * 720 - 360;
+    
+    particle.style.setProperty('--random-x', `${randomX}px`);
+    particle.style.setProperty('--random-y', `${randomY}px`);
+    particle.style.setProperty('--random-rotate', `${randomRotate}deg`);
+    
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.background = color;
+    particle.style.left = `${x}%`;
+    particle.style.top = `${y}%`;
+    particle.style.transform = `rotate(${rotation}deg)`;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `${delay}s`;
+    
+    container.appendChild(particle);
+    
+    // Remove particles after animation to clean up DOM
+    setTimeout(() => {
+        particle.remove();
+    }, (duration + delay) * 1000);
 } 
