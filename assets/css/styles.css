@@ -1123,14 +1123,12 @@ section {
 .about-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem;
-    position: relative;
-    z-index: 1;
+    gap: 3rem;
 }
 
 @media (min-width: 992px) {
     .about-content {
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -3007,4 +3005,335 @@ section {
         transform: translate(var(--random-x, -50px), var(--random-y, -100px)) rotate(var(--random-rotate, 200deg)) scale(0.2);
         opacity: 0;
     }
+}
+
+/* About founders section */
+.about-founders {
+    margin-top: 2rem;
+}
+
+.about-founders h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-dark-blue);
+    position: relative;
+    display: inline-block;
+}
+
+.about-founders h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
+}
+
+.founders-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.founder-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.founder-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.founder-card .view-all {
+    margin: 0.5rem 1.5rem 1.5rem;
+    color: var(--color-purple);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.founder-card .view-all:hover {
+    color: var(--color-dark-blue);
+}
+
+.founder-card .view-all .arrow-icon {
+    display: inline-block;
+    margin-left: 0.25rem;
+    transition: transform 0.3s ease;
+}
+
+.founder-card .view-all:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+.founder-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.founder-image {
+    height: 300px;
+    overflow: hidden;
+}
+
+.founder-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.founder-card:hover .founder-image img {
+    transform: scale(1.05);
+}
+
+.founder-info {
+    padding: 1.5rem 1.5rem 0.75rem;
+    text-align: center;
+}
+
+.founder-info h4 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark-blue);
+}
+
+.founder-info p {
+    color: var(--color-dark-gray);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 992px) {
+    .founders-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-founders h3 {
+        display: block;
+        text-align: center;
+    }
+    
+    .about-founders h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .founders-container {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Inner page hero */
+.inner-page-hero {
+    padding-top: calc(var(--navbar-height) + 4rem);
+    padding-bottom: 4rem;
+    text-align: center;
+}
+
+.inner-page-hero h1 {
+    margin-bottom: 1rem;
+    margin-left: 0;
+    text-align: center;
+}
+
+.inner-page-hero p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Founder profile sections */
+.founder-profile {
+    padding: 5rem 0;
+    background-color: var(--color-white);
+}
+
+.founder-profile:nth-child(odd) {
+    background-color: var(--color-light-gray);
+}
+
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.profile-image {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    height: 450px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.profile-details h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark-blue);
+}
+
+.profile-title {
+    font-size: 1.2rem;
+    color: var(--color-purple);
+    margin-bottom: 2rem;
+    font-weight: var(--font-weight-medium);
+}
+
+.profile-bio p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.profile-expertise {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background-color: rgba(110, 65, 192, 0.05);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-purple);
+}
+
+.profile-expertise h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark-blue);
+}
+
+.profile-expertise ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding-left: 1rem;
+}
+
+.profile-expertise li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-expertise li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-purple);
+    border-radius: 50%;
+}
+
+@media (max-width: 992px) {
+    .profile-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .profile-image {
+        height: 400px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .profile-details h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .profile-title {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .founder-profile {
+        padding: 3rem 0;
+    }
+    
+    .profile-image {
+        height: 350px;
+    }
+    
+    .profile-expertise ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about-founders .view-all {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--color-purple);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.about-founders .view-all:hover {
+    color: var(--color-dark-blue);
+}
+
+.about-founders .view-all .arrow-icon {
+    display: inline-block;
+    margin-left: 0.25rem;
+    transition: transform 0.3s ease;
+}
+
+.about-founders .view-all:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+    .about-founders .view-all {
+        display: block;
+        text-align: center;
+    }
+}
+
+.inner-page-hero .hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.inner-page-hero .hero-content h1 {
+    margin-bottom: 1rem;
+    margin-left: 0;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.inner-page-hero .hero-content h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 4px;
 }
