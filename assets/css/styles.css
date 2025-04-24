@@ -3049,7 +3049,7 @@ section {
 }
 
 .founder-card:hover {
-    transform: translateY(-10px);
+    /* transform: translateY(-10px); */
     box-shadow: var(--shadow-lg);
 }
 
@@ -3093,10 +3093,6 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
-}
-
-.founder-card:hover .founder-image img {
-    transform: scale(1.05);
 }
 
 .founder-info {
